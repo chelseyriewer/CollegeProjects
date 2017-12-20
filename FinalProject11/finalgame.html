@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+   finalgame.html
+   
+   Copyright 2017 chels <chels@DESKTOP-1P6QNG4>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+
+
+
+
+In the end turn button use a next player function within the button like 
+
+<button onclick="nextplayer();"></button>
+
+
+-->
+
+<head>
+	<link href="finalgame.css" type="text/css"rel="stylesheet"/>
+	<script type="text/javascript" src="final.js" charset="utf-8"></script>
+<meta charset="utf-8" />
+<title>untitled</title>
+<meta name="generator" content="Geany 1.31" />
+</head>
+
+<body onload="CurrentPlayer();">
+	
+<?php	
+if (isset($_POST('endturn'])){
+  extract($_REQUEST);
+  $mySQL_Host="localhost";
+  $mySQL_User="criewer";
+  $mySQL_Pass="11777466";
+
+  function connect(){
+    global $mySQL_Host, $mySQL_User,$mySQL_Pass;
+
+    if ( ! $linkid = mysql_connect("$mySQL_Host",
+                                   "$mySQL_User","$mySQL_Pass")){
+      echo "Impossible to connect to ", $mySQL_Host, "<br />";
+      exit;
+    }
+    return $linkid;
+  }
+
+  function send_sql( $sql, $link, $db ) {
+    if ( ! ($succ = mysql_select_db( $db))) {
+      echo mysql_error();
+      exit;
+    }
+    if ( ! ($res = mysql_query ( $sql, $link))) {
+      echo  mysql_error();
+      exit;
+    }
+    return $res;
+  }
+$turn = 1;
+
+if ($turn = 1){
+	
+	$link = connect();
+	$database = "criewer";
+	$sql = "SELECT * FROM final WHERE id = 1";
+	$result = send_sql($sql, $link, $database);
+	
+	echo "$result";
+		if (isset($_POST['endturn'])){
+			$turn = $turn + 1;
+	}
+
+}
+
+if ($turn = 2){
+	
+	$link = connect();
+	$database = "criewer";
+	$sql = "SELECT * FROM final WHERE id = 2";
+	$result = send_sql($sql, $link, $database);
+	
+	echo "$result";
+		if (isset($_POST['endturn'])){
+			$turn = $turn + 1;
+	}
+
+}
+
+if ($turn = 3){
+	
+	$link = connect();
+	$database = "criewer";
+	$sql = "SELECT * FROM final WHERE id = 3";
+	$result = send_sql($sql, $link, $database);
+	
+		if($result == null){
+		$sql = "SELECT * FROM final WHERE id = 1";
+		$result = send_sql($sql, $link, $database);
+		echo "$result";
+	}else{ echo "$result"};
+	
+		if (isset($_POST['endturn'])){
+			$turn = $turn + 1;
+	}
+
+}
+
+if ($turn = 4){
+	
+	$link = connect();
+	$database = "criewer";
+	$sql = "SELECT * FROM final WHERE id = 4";
+	$result = send_sql($sql, $link, $database);
+	
+	if($result == null){
+		$sql = "SELECT * FROM final WHERE id = 1";
+		$result = send_sql($sql, $link, $database);
+		echo "$result";
+	}else{ echo "$result"};
+
+		if (isset($_POST['endturn'])){
+			$turn = 1;
+	}
+	
+mysql_close( $link );
+}
+
+}
+
+
+
+
+
+
+else{?>
+
+<div class="CurrentPlayer();">
+	<span id="name"></span> <br>
+	
+	</div>
+
+	<div class="ButtonLeft">
+	<button id="al">Alabama</button>
+	<button id="ak">Alaska</button>
+	<button id="az">Arizona</button>
+	<button id="ar">Arkansas</button>
+	<button id="ca">California</button>
+	<button id="co">Colorado</button>
+	<button id="ct">Connecticut</button>
+	<button id="de">Delaware</button>
+	<button id="fl">Florida</button>
+	<button id="ga">Georgia</button>
+	<button id="hi">Hawaii</button>
+	<button id="id">Idaho</button>
+	<button id="il">Illinois</button>
+	<button id="in">Indiana</button>
+	<button id="ia">Iowa</button>
+	<button id="ks">Kansas</button>
+	<button id="ky">Kentucky</button>
+	<button id="la">Louisiana</button>
+	<button id="me">Maine</button>
+	<button id="md">Maryland</button>
+	<button id="ma">Massachusetts</button>
+	<button id="mi">Michigan</button>
+	<button id="mn">Minnesota</button>
+	<button id="ms">Mississippi</button>
+	<button id="mo">Missouri</button>
+	</div>
+	
+	<div class="ButtonCenter">
+	<button id="mt">Montana</button>
+	<button id="ne">Nebraska</button>
+	<button id="nv">Nevada</button>
+	<button id="nh">New Hampshire</button>
+	<button id="nj">New Jersey</button>
+	<button id="nm">New Mexico</button>
+	<button id="ny">New York</button>
+	<button id="nc">North Carolina</button>
+	<button id="nd">North Dakota</button>
+	<button id="oh">Ohio</button>
+	<button id="ok">Oklahoma</button>
+	<button id="or">Oregon</button>
+	<button id="pa">Pennsylvania</button>
+	<button id="ri">Rhode Island</button>
+	<button id="sc">South Carolina</button>
+	<button id="sd">South Dakota</button>
+	<button id="tn">Tennessee</button>
+	<button id="tx">Texas</button>
+	<button id="ut">Utah</button>
+	<button id="vt">Vermont</button>
+	<button id="va">Virginia</button>
+	<button id="wa">Washington</button>
+	<button id="wv">West Virginia</button>
+	<button id="wi">Wisconsin</button>
+	<button id="wy">Wyoming</button>
+	</div>
+	
+	<button id="endturn" class="endT">End Turn</button>
+	
+	
+
+</body>
+
+</html>
+<?php } ?>
